@@ -7,8 +7,8 @@ import 'timetable.dart';
 
 abstract class VisibleRange {
   const VisibleRange({
-    @required this.visibleDays,
-  })  : assert(visibleDays != null),
+    required this.visibleDays,
+  })   : assert(visibleDays != null),
         assert(visibleDays > 0);
 
   /// Display a fixed number of days.

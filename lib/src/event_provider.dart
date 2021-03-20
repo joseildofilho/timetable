@@ -51,7 +51,7 @@ abstract class EventProvider<E extends Event> {
   /// - [EventProvider]'s class comment for an overview of provided
   ///   implementations.
   factory EventProvider.stream({
-    @required StreamedEventGetter<E> eventGetter,
+    required StreamedEventGetter<E> eventGetter,
     VoidCallback onDispose,
   }) = StreamEventProvider<E>;
 
@@ -125,17 +125,17 @@ typedef StreamedEventGetter<E extends Event> = Stream<Iterable<E>> Function(
 ///   change.
 class StreamEventProvider<E extends Event> extends EventProvider<E>
     with VisibleDatesStreamEventProviderMixin<E> {
-  StreamEventProvider({@required this.eventGetter, this.onDispose})
+  StreamEventProvider({required this.eventGetter, this.onDispose})
       : assert(eventGetter != null) {
     _events = visibleDates.switchMap(eventGetter).publishValue();
     _eventsSubscription = _events.connect();
   }
 
   final StreamedEventGetter<E> eventGetter;
-  final VoidCallback onDispose;
+  final VoidCallback? onDispose;
 
-  ValueConnectableStream<Iterable<E>> _events;
-  StreamSubscription<Iterable<E>> _eventsSubscription;
+  late ValueConnectableStream<Iterable<E>> _events;
+  late StreamSubscription<Iterable<E>> _eventsSubscription;
 
   @override
   Stream<Iterable<E>> getAllDayEventsIntersecting(DateInterval interval) {

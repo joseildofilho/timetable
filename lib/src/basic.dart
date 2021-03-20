@@ -12,12 +12,12 @@ import 'event.dart';
 /// - [BasicEventWidget], which can display instances of [BasicEvent].
 class BasicEvent extends Event {
   const BasicEvent({
-    @required Object id,
-    @required this.title,
-    @required this.color,
-    @required LocalDateTime start,
-    @required LocalDateTime end,
-  })  : assert(title != null),
+    required Object id,
+    required this.title,
+    required this.color,
+    required LocalDateTime start,
+    required LocalDateTime end,
+  })   : assert(title != null),
         super(id: id, start: start, end: end);
 
   /// A title for the user, used e.g. by [BasicEventWidget].
@@ -40,7 +40,7 @@ class BasicEvent extends Event {
 class BasicEventWidget extends StatelessWidget {
   const BasicEventWidget(
     this.event, {
-    Key key,
+    Key? key,
     this.onTap,
   })  : assert(event != null),
         super(key: key);
@@ -50,7 +50,7 @@ class BasicEventWidget extends StatelessWidget {
 
   /// An optional [VoidCallback] that will be invoked when the user taps this
   /// widget.
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +68,11 @@ class BasicEventWidget extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.fromLTRB(4, 2, 4, 0),
           child: DefaultTextStyle(
-            style: context.textTheme.bodyText2.copyWith(
-              fontSize: 12,
-              color: event.color.highEmphasisOnColor,
-            ),
+            style: context.textTheme.bodyText2?.copyWith(
+                  fontSize: 12,
+                  color: event.color.highEmphasisOnColor,
+                ) ??
+                TextStyle(),
             child: Text(event.title),
           ),
         ),
@@ -84,8 +85,8 @@ class BasicEventWidget extends StatelessWidget {
 class BasicAllDayEventWidget extends StatelessWidget {
   const BasicAllDayEventWidget(
     this.event, {
-    Key key,
-    @required this.info,
+    Key? key,
+    required this.info,
     this.borderRadius = 4,
     this.onTap,
   })  : assert(event != null),
@@ -100,7 +101,7 @@ class BasicAllDayEventWidget extends StatelessWidget {
 
   /// An optional [VoidCallback] that will be invoked when the user taps this
   /// widget.
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -135,10 +136,11 @@ class BasicAllDayEventWidget extends StatelessWidget {
       child: Align(
         alignment: AlignmentDirectional.centerStart,
         child: DefaultTextStyle(
-          style: context.textTheme.bodyText2.copyWith(
-            fontSize: 14,
-            color: event.color.highEmphasisOnColor,
-          ),
+          style: context.textTheme.bodyText2?.copyWith(
+                fontSize: 14,
+                color: event.color.highEmphasisOnColor,
+              ) ??
+              TextStyle(),
           child: Text(event.title, maxLines: 1),
         ),
       ),

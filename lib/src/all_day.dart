@@ -9,9 +9,9 @@ import 'package:meta/meta.dart';
 @immutable
 class AllDayEventLayoutInfo {
   const AllDayEventLayoutInfo({
-    @required this.hiddenStartDays,
-    @required this.hiddenEndDays,
-  })  : assert(hiddenStartDays != null),
+    required this.hiddenStartDays,
+    required this.hiddenEndDays,
+  })   : assert(hiddenStartDays != null),
         assert(hiddenStartDays >= 0),
         assert(hiddenEndDays != null),
         assert(hiddenEndDays >= 0);
@@ -32,8 +32,8 @@ class AllDayEventLayoutInfo {
 
 class AllDayEventBackgroundPainter extends CustomPainter {
   const AllDayEventBackgroundPainter({
-    @required this.info,
-    @required this.color,
+    required this.info,
+    required this.color,
     this.borderRadius = 0,
   })  : assert(info != null),
         assert(color != null),
@@ -63,7 +63,7 @@ class AllDayEventBackgroundPainter extends CustomPainter {
 /// right borders if not all of the event is currently visible.
 class AllDayEventBorder extends ShapeBorder {
   const AllDayEventBorder({
-    @required this.info,
+    required this.info,
     this.side = BorderSide.none,
     this.borderRadius = 0,
   })  : assert(info != null),
@@ -87,17 +87,17 @@ class AllDayEventBorder extends ShapeBorder {
   }
 
   @override
-  Path getInnerPath(Rect rect, {TextDirection textDirection}) {
-    return null;
+  Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
+    throw UnimplementedError();
   }
 
   @override
-  Path getOuterPath(Rect rect, {TextDirection textDirection}) {
+  Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
     return _getPath(rect.size, info, borderRadius);
   }
 
   @override
-  void paint(Canvas canvas, Rect rect, {TextDirection textDirection}) {
+  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
     // For some reason, when we paint the background in this shape directly, it
     // lags while scrolling. Hence, we only use it to provide the outer path
     // used for clipping.

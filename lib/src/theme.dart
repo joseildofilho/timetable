@@ -47,15 +47,15 @@ class TimetableThemeData {
   /// Used by default for indicating the current date.
   ///
   /// The default value is [ThemeData.primaryColor].
-  final Color primaryColor;
+  final Color? primaryColor;
 
   // Header:
 
   /// [Decoration] to show around the week indicator.
-  final Decoration weekIndicatorDecoration;
+  final Decoration? weekIndicatorDecoration;
 
   /// [TextStyle] used to display the current week number.
-  final TextStyle weekIndicatorTextStyle;
+  final TextStyle? weekIndicatorTextStyle;
 
   /// Total (combined) height of both the day-of-week- and
   /// date-of-month-indicators.
@@ -63,37 +63,37 @@ class TimetableThemeData {
   /// > **Note:** This will soon be determined automatically based on the actual
   /// > height.
   @experimental
-  final double totalDateIndicatorHeight;
+  final double? totalDateIndicatorHeight;
 
   /// [LocalDatePattern] for formatting the day-of-week.
   ///
   /// See also:
   /// - [dateIndicatorTextStyle] for a list of possible states.
-  final MaterialStateProperty<LocalDatePattern> weekDayIndicatorPattern;
+  final MaterialStateProperty<LocalDatePattern>? weekDayIndicatorPattern;
 
   /// [Decoration] to show around the day-of-week-indicator.
   ///
   /// See also:
   /// - [dateIndicatorTextStyle] for a list of possible states.
-  final MaterialStateProperty<Decoration> weekDayIndicatorDecoration;
+  final MaterialStateProperty<Decoration>? weekDayIndicatorDecoration;
 
   /// [TextStyle] used to display the day of week.
   ///
   /// See also:
   /// - [dateIndicatorTextStyle] for a list of possible states.
-  final MaterialStateProperty<TextStyle> weekDayIndicatorTextStyle;
+  final MaterialStateProperty<TextStyle>? weekDayIndicatorTextStyle;
 
   /// [LocalDatePattern] for formatting the date (of month).
   ///
   /// See also:
   /// - [dateIndicatorTextStyle] for a list of possible states.
-  final MaterialStateProperty<LocalDatePattern> dateIndicatorPattern;
+  final MaterialStateProperty<LocalDatePattern>? dateIndicatorPattern;
 
   /// [Decoration] to show around the date (of month) indicator.
   ///
   /// See also:
   /// - [dateIndicatorTextStyle] for a list of possible states.
-  final MaterialStateProperty<Decoration> dateIndicatorDecoration;
+  final MaterialStateProperty<Decoration>? dateIndicatorDecoration;
 
   /// [TextStyle] used to display the date (of month).
   ///
@@ -101,35 +101,35 @@ class TimetableThemeData {
   /// - past days: [MaterialState.disabled]
   /// - today: [MaterialState.selected]
   /// - future days: none
-  final MaterialStateProperty<TextStyle> dateIndicatorTextStyle;
+  final MaterialStateProperty<TextStyle>? dateIndicatorTextStyle;
 
   /// Height of a single all-day event.
   ///
   /// Defaults to 24.
-  final double allDayEventHeight;
+  final double? allDayEventHeight;
 
   // Content:
 
   /// [TextStyle] used to display the hours of the day.
-  final TextStyle hourTextStyle;
+  final TextStyle? hourTextStyle;
 
   /// [Color] for painting the current time indicator.
-  final Color timeIndicatorColor;
+  final Color? timeIndicatorColor;
 
   /// [Color] for painting hour and day dividers in the part-day event area.
-  final Color dividerColor;
+  final Color? dividerColor;
 
   /// Minimum height of a single hour when zooming in.
   ///
   /// Defaults to 16.
-  final double minimumHourHeight;
+  final double? minimumHourHeight;
 
   /// Maximum height of a single hour when zooming in.
   ///
   /// [double.infinity] is supported!
   ///
   /// Defaults to 64.
-  final double maximumHourHeight;
+  final double? maximumHourHeight;
 
   /// Minimum time zoom factor.
   ///
@@ -141,7 +141,7 @@ class TimetableThemeData {
   /// limits take precedence.
   ///
   /// Defaults to 0.
-  final double minimumHourZoom;
+  final double? minimumHourZoom;
 
   /// Maximum time zoom factor.
   ///
@@ -149,20 +149,20 @@ class TimetableThemeData {
   ///
   /// See also:
   /// - [minimumHourZoom] for an explanation of zoom values.
-  final double maximumHourZoom;
+  final double? maximumHourZoom;
 
   /// Minimum [Period] to size a part-day event.
   ///
   /// Can be used together with [partDayEventMinimumHeight].
-  final Period partDayEventMinimumDuration;
+  final Period? partDayEventMinimumDuration;
 
   /// Minimum height to size a part-day event.
   ///
   /// Can be used together with [partDayEventMinimumDuration].
-  final double partDayEventMinimumHeight;
+  final double? partDayEventMinimumHeight;
 
   /// Horizontal space between two parallel events shown next to each other.
-  final double partDayEventSpacing;
+  final double? partDayEventSpacing;
 
   /// Controls whether overlapping events may be stacked on top of each other.
   ///
@@ -172,7 +172,7 @@ class TimetableThemeData {
   /// not overlap.
   ///
   /// Defaults to `true`.
-  final bool enablePartDayEventStacking;
+  final bool? enablePartDayEventStacking;
 
   /// When the start values of two events differ by at least this value, they
   /// may be stacked on top of each other.
@@ -184,10 +184,10 @@ class TimetableThemeData {
   /// See also:
   /// - [enablePartDayEventStacking], which can disable the stacking behavior
   ///   completely.
-  final Period partDayEventMinimumDeltaForStacking;
+  final Period? partDayEventMinimumDeltaForStacking;
 
   /// Horizontal space between two parallel events stacked on top of each other.
-  final double partDayStackedEventSpacing;
+  final double? partDayStackedEventSpacing;
 
   @override
   int get hashCode {
@@ -264,10 +264,10 @@ class TimetableTheme extends InheritedTheme {
   ///
   /// [data] must not be null.
   const TimetableTheme({
-    Key key,
-    @required this.data,
-    @required Widget child,
-  })  : assert(data != null),
+    Key? key,
+    required this.data,
+    required Widget child,
+  })   : assert(data != null),
         super(key: key, child: child);
 
   final TimetableThemeData data;
@@ -284,7 +284,7 @@ class TimetableTheme extends InheritedTheme {
   static TimetableThemeData of(BuildContext context) {
     final timetableTheme =
         context.dependOnInheritedWidgetOfExactType<TimetableTheme>();
-    return timetableTheme?.data;
+    return timetableTheme!.data;
   }
 
   @override

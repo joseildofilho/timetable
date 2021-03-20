@@ -12,10 +12,10 @@ import 'basic.dart';
 /// - [BasicEvent], which provides a basic implementation to get you started.
 abstract class Event {
   const Event({
-    @required this.id,
-    @required this.start,
-    @required this.end,
-  })  : assert(id != null),
+    required this.id,
+    required this.start,
+    required this.end,
+  })   : assert(id != null),
         assert(start != null),
         assert(end != null),
         assert(start <= end);

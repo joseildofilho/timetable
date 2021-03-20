@@ -36,9 +36,9 @@ const double hourColumnWidth = 48;
 
 class Timetable<E extends Event> extends StatelessWidget {
   const Timetable({
-    Key key,
-    @required this.controller,
-    @required this.eventBuilder,
+    Key? key,
+    required this.controller,
+    required this.eventBuilder,
     this.allDayEventBuilder,
     this.onEventBackgroundTap,
     this.theme,
@@ -54,24 +54,24 @@ class Timetable<E extends Event> extends StatelessWidget {
   /// Optional [Widget] builder function for all-day event shown in the header.
   ///
   /// If not set, [eventBuilder] will be used instead.
-  final AllDayEventBuilder<E> allDayEventBuilder;
-  final TimetableThemeData theme;
+  final AllDayEventBuilder<E>? allDayEventBuilder;
+  final TimetableThemeData? theme;
 
   /// Called when the user taps the background in areas where events are laid
   /// out.
-  final OnEventBackgroundTapCallback onEventBackgroundTap;
+  final OnEventBackgroundTapCallback? onEventBackgroundTap;
 
   /// Custom builder for the left area of the header.
   ///
   /// If it's not provided, or the builder returns `null`, a week indicator
   /// will be shown.
-  final HeaderWidgetBuilder leadingHeaderBuilder;
+  final HeaderWidgetBuilder? leadingHeaderBuilder;
 
   /// Custom builder for header of a single date.
   ///
   /// If it's not provided, or the builder returns `null`, the day of week and
   /// day of month will be shown.
-  final HeaderWidgetBuilder dateHeaderBuilder;
+  final HeaderWidgetBuilder? dateHeaderBuilder;
 
   @override
   Widget build(BuildContext context) {

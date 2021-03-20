@@ -29,8 +29,8 @@ class _FactorInitialTimeRange extends InitialTimeRange {
 
 class _RangeInitialTimeRange extends InitialTimeRange {
   _RangeInitialTimeRange({
-    LocalTime startTime,
-    LocalTime endTime,
+    LocalTime? startTime,
+    LocalTime? endTime,
   })  : startTime = startTime ?? LocalTime.minValue,
         endTime = endTime ?? LocalTime.maxValue,
         assert((startTime ?? LocalTime.minValue) <

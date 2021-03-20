@@ -4,14 +4,14 @@ import 'package:flutter/widgets.dart';
 import 'controller.dart';
 
 class TimetableScrollPhysics extends ScrollPhysics {
-  const TimetableScrollPhysics(this.controller, {ScrollPhysics parent})
+  const TimetableScrollPhysics(this.controller, {ScrollPhysics? parent})
       : assert(controller != null),
         super(parent: parent);
 
   final TimetableController controller;
 
   @override
-  TimetableScrollPhysics applyTo(ScrollPhysics ancestor) {
+  TimetableScrollPhysics applyTo(ScrollPhysics? ancestor) {
     return TimetableScrollPhysics(controller, parent: buildParent(ancestor));
   }
 
@@ -34,7 +34,7 @@ class TimetableScrollPhysics extends ScrollPhysics {
   }
 
   @override
-  Simulation createBallisticSimulation(
+  Simulation? createBallisticSimulation(
       ScrollMetrics position, double velocity) {
     // If we're out of range and not headed back in range, defer to the parent
     // ballistics, which should put us back in range at a page boundary.

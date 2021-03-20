@@ -10,10 +10,10 @@ typedef DateWidgetBuilder = Widget Function(
 
 class DatePageView<E extends Event> extends StatefulWidget {
   const DatePageView({
-    Key key,
-    @required this.controller,
-    @required this.builder,
-  })  : assert(controller != null),
+    Key? key,
+    required this.controller,
+    required this.builder,
+  })   : assert(controller != null),
         assert(builder != null),
         super(key: key);
 
@@ -25,7 +25,7 @@ class DatePageView<E extends Event> extends StatefulWidget {
 }
 
 class _DatePageViewState extends State<DatePageView> {
-  ScrollController _controller;
+  late ScrollController _controller;
 
   @override
   void initState() {

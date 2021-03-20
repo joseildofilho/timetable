@@ -14,8 +14,8 @@ import 'visible_range.dart';
 /// Controls a [Timetable] and manages its state.
 class TimetableController<E extends Event> {
   TimetableController({
-    @required this.eventProvider,
-    LocalDate initialDate,
+    required this.eventProvider,
+    LocalDate? initialDate,
     this.initialTimeRange = const InitialTimeRange.zoom(1),
     this.visibleRange = const VisibleRange.week(),
     this.firstDayOfWeek = DayOfWeek.monday,
@@ -70,13 +70,13 @@ class TimetableController<E extends Event> {
   /// [TimetableHeader] to calculate the current week number.
   final DayOfWeek firstDayOfWeek;
 
-  LinkedScrollControllerGroup _scrollControllers;
+  late LinkedScrollControllerGroup _scrollControllers;
   LinkedScrollControllerGroup get scrollControllers => _scrollControllers;
 
-  ValueNotifier<LocalDate> _dateListenable;
+  late ValueNotifier<LocalDate> _dateListenable;
   ValueListenable<LocalDate> get dateListenable => _dateListenable;
 
-  ValueNotifier<DateInterval> _currentlyVisibleDatesListenable;
+  late ValueNotifier<DateInterval> _currentlyVisibleDatesListenable;
   ValueListenable<DateInterval> get currentlyVisibleDatesListenable =>
       _currentlyVisibleDatesListenable;
   DateInterval get currentlyVisibleDates =>
