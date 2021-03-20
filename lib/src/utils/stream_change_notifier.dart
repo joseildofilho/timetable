@@ -7,7 +7,7 @@ class StreamChangeNotifier extends ChangeNotifier {
     _subscription = stream.listen((dynamic _) => notifyListeners());
   }
 
-  StreamSubscription<dynamic> _subscription;
+  late StreamSubscription<dynamic> _subscription;
 
   @override
   void dispose() {

@@ -35,7 +35,7 @@ class LinkedScrollControllerGroup {
 
   final _allControllers = <_LinkedScrollController>[];
 
-  ValueNotifier<double> _pageNotifier;
+  late ValueNotifier<double> _pageNotifier;
 
   /// The current page of the group.
   double get page => _pageNotifier.value;
@@ -67,8 +67,8 @@ class LinkedScrollControllerGroup {
   /// Animates the scroll position of all linked controllers to [page].
   Future<void> animateTo(
     double page, {
-    @required Curve curve,
-    @required Duration duration,
+    required Curve curve,
+    required Duration duration,
   }) async {
     final animations = <Future<void>>[];
     for (final controller in _attachedControllers) {
@@ -120,7 +120,7 @@ class _LinkedScrollController extends ScrollController {
 
   @override
   _LinkedScrollPosition createScrollPosition(ScrollPhysics physics,
-      ScrollContext context, ScrollPosition oldPosition) {
+      ScrollContext context, ScrollPosition? oldPosition) {
     return _LinkedScrollPosition(
       this,
       physics: physics,
@@ -157,8 +157,8 @@ class _LinkedScrollController extends ScrollController {
 
   Future<void> animateToPage(
     double page, {
-    @required Curve curve,
-    @required Duration duration,
+    required Curve curve,
+    required Duration duration,
   }) async =>
       animateTo(_pageToOffset(page), curve: curve, duration: duration);
   Future<void> jumpToPage(double page) async => jumpTo(_pageToOffset(page));
@@ -177,10 +177,10 @@ class _LinkedScrollController extends ScrollController {
 class _LinkedScrollPosition extends ScrollPositionWithSingleContext {
   _LinkedScrollPosition(
     this.owner, {
-    ScrollPhysics physics,
-    ScrollContext context,
+    required ScrollPhysics physics,
+    required ScrollContext context,
     this.initialPage,
-    ScrollPosition oldPosition,
+    ScrollPosition? oldPosition,
   })  : assert(owner != null),
         super(
           physics: physics,
@@ -190,18 +190,18 @@ class _LinkedScrollPosition extends ScrollPositionWithSingleContext {
         );
 
   final _LinkedScrollController owner;
-  double initialPage;
+  double? initialPage;
 
   final Set<_LinkedScrollActivity> _peerActivities = <_LinkedScrollActivity>{};
 
   @override
   bool applyViewportDimension(double viewportDimension) {
     final oldViewportDimension =
-        hasViewportDimension ? this.viewportDimension : null;
+        hasViewportDimension ? this.viewportDimension : 0.0;
     final result = super.applyViewportDimension(viewportDimension);
     final oldPixels = hasPixels ? pixels : null;
     final page = (oldPixels == null || oldViewportDimension == 0.0)
-        ? initialPage
+        ? initialPage ?? 0.0
         : oldPixels /
             (oldViewportDimension * owner._controllers.viewportFraction);
     final newPixels =
@@ -227,11 +227,11 @@ class _LinkedScrollPosition extends ScrollPositionWithSingleContext {
   void _holdInternal() {
     // Passing null to hold seems fishy, but it doesn't appear to hurt anything.
     // Revisit this if bad things happen.
-    super.hold(null);
+    super.hold(() {});
   }
 
   @override
-  void beginActivity(ScrollActivity newActivity) {
+  void beginActivity(ScrollActivity? newActivity) {
     if (newActivity == null) {
       return;
     }
@@ -360,9 +360,9 @@ class _LinkedScrollActivity extends ScrollActivity {
 
   void _updateUserScrollDirection() {
     assert(drivers.isNotEmpty);
-    ScrollDirection commonDirection;
+    late ScrollDirection commonDirection;
     for (final driver in drivers) {
-      commonDirection ??= driver.userScrollDirection;
+      commonDirection = driver.userScrollDirection;
       if (driver.userScrollDirection != commonDirection) {
         commonDirection = ScrollDirection.idle;
       }

@@ -59,9 +59,9 @@ class _RangeInitialZoom extends InitialZoom {
 
 class VerticalZoom extends StatefulWidget {
   const VerticalZoom({
-    Key key,
+    Key? key,
     this.initialZoom = const InitialZoom.zoom(1),
-    @required this.child,
+    required this.child,
     this.minChildHeight = 1,
     this.maxChildHeight = double.infinity,
   })  : assert(initialZoom != null),
@@ -84,12 +84,12 @@ class VerticalZoom extends StatefulWidget {
 }
 
 class _VerticalZoomState extends State<VerticalZoom> {
-  ScrollController _scrollController;
+  late ScrollController _scrollController;
   // We store height i/o zoom factor so our child stays constant when we change
   // height.
-  double _contentHeight;
-  double _contentHeightUpdateReference;
-  double _lastFocus;
+  late double _contentHeight;
+  late double _contentHeightUpdateReference;
+  late double _lastFocus;
 
   @override
   void initState() {
@@ -110,12 +110,12 @@ class _VerticalZoomState extends State<VerticalZoom> {
       builder: (context, constraints) {
         final height = constraints.maxHeight;
 
-        _contentHeight ??= _coerceContentHeight(
+        _contentHeight = _coerceContentHeight(
           widget.initialZoom.getContentHeight(height),
           height,
           timetableTheme,
         );
-        _scrollController ??= ScrollController(
+        _scrollController = ScrollController(
           initialScrollOffset:
               widget.initialZoom.getOffset(height, _contentHeight),
         );
@@ -173,8 +173,8 @@ class _VerticalZoomState extends State<VerticalZoom> {
     return childHeight
         .coerceIn(widget.minChildHeight, widget.maxChildHeight)
         .coerceIn(
-          (theme?.minimumHourZoom ?? 0) * parentHeight,
-          (theme?.maximumHourZoom ?? double.infinity) * parentHeight,
+          (theme.minimumHourZoom ?? 0) * parentHeight,
+          (theme.maximumHourZoom ?? double.infinity) * parentHeight,
         );
   }
 
