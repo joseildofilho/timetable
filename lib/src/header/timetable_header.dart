@@ -11,9 +11,9 @@ import 'week_indicator.dart';
 
 class TimetableHeader<E extends Event> extends StatelessWidget {
   const TimetableHeader({
-    Key key,
-    @required this.controller,
-    @required this.allDayEventBuilder,
+    Key? key,
+    required this.controller,
+    required this.allDayEventBuilder,
     this.onEventBackgroundTap,
     this.leadingHeaderBuilder,
     this.dateHeaderBuilder,
@@ -23,9 +23,9 @@ class TimetableHeader<E extends Event> extends StatelessWidget {
 
   final TimetableController<E> controller;
   final AllDayEventBuilder<E> allDayEventBuilder;
-  final OnEventBackgroundTapCallback onEventBackgroundTap;
-  final HeaderWidgetBuilder leadingHeaderBuilder;
-  final HeaderWidgetBuilder dateHeaderBuilder;
+  final OnEventBackgroundTapCallback? onEventBackgroundTap;
+  final HeaderWidgetBuilder? leadingHeaderBuilder;
+  final HeaderWidgetBuilder? dateHeaderBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -62,12 +62,13 @@ class TimetableHeader<E extends Event> extends StatelessWidget {
                       context.timetableTheme?.totalDateIndicatorHeight ?? 72,
                   child: MultiDateHeader(
                     controller: controller,
-                    builder: dateHeaderBuilder,
+                    builder: dateHeaderBuilder ?? (_, __) => Container(),
                   ),
                 ),
                 AllDayEvents<E>(
                   controller: controller,
-                  onEventBackgroundTap: onEventBackgroundTap,
+                  onEventBackgroundTap:
+                      onEventBackgroundTap ?? (_, __) => Container(),
                   allDayEventBuilder: allDayEventBuilder,
                 ),
               ],

@@ -8,14 +8,14 @@ import 'date_header.dart';
 
 class MultiDateHeader<E extends Event> extends StatelessWidget {
   const MultiDateHeader({
-    Key key,
-    @required this.controller,
+    Key? key,
+    required this.controller,
     this.builder,
   })  : assert(controller != null),
         super(key: key);
 
   final TimetableController<E> controller;
-  final HeaderWidgetBuilder builder;
+  final HeaderWidgetBuilder? builder;
 
   @override
   Widget build(BuildContext context) {

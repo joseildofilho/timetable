@@ -16,9 +16,9 @@ import '../visible_range.dart';
 
 class AllDayEvents<E extends Event> extends StatelessWidget {
   const AllDayEvents({
-    Key key,
-    @required this.controller,
-    @required this.allDayEventBuilder,
+    Key? key,
+    required this.controller,
+    required this.allDayEventBuilder,
     this.onEventBackgroundTap,
   })  : assert(controller != null),
         assert(allDayEventBuilder != null),
@@ -26,7 +26,7 @@ class AllDayEvents<E extends Event> extends StatelessWidget {
 
   final TimetableController<E> controller;
   final AllDayEventBuilder<E> allDayEventBuilder;
-  final OnEventBackgroundTapCallback onEventBackgroundTap;
+  final OnEventBackgroundTapCallback? onEventBackgroundTap;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +90,7 @@ class AllDayEvents<E extends Event> extends StatelessWidget {
     final tappedCell = details.localPosition.dx /
         (width / controller.visibleRange.visibleDays);
     final date = LocalDate.fromEpochDay((page + tappedCell).floor());
-    onEventBackgroundTap(date.atMidnight(), true);
+    onEventBackgroundTap?.call(date.atMidnight(), true);
   }
 
   Widget _buildEventLayout(
@@ -132,9 +132,9 @@ class AllDayEvents<E extends Event> extends StatelessWidget {
 class _EventParentDataWidget<E extends Event>
     extends ParentDataWidget<_EventParentData<E>> {
   const _EventParentDataWidget({
-    Key key,
-    @required this.event,
-    @required Widget child,
+    Key? key,
+    required this.event,
+    required Widget child,
   }) : super(key: key, child: child);
 
   final E event;
@@ -161,11 +161,11 @@ class _EventParentDataWidget<E extends Event>
 
 class _EventsWidget<E extends Event> extends MultiChildRenderObjectWidget {
   _EventsWidget({
-    @required this.visibleRange,
-    @required this.currentlyVisibleDates,
-    @required this.page,
-    @required List<_EventParentDataWidget<E>> children,
-  })  : assert(visibleRange != null),
+    required this.visibleRange,
+    required this.currentlyVisibleDates,
+    required this.page,
+    required List<_EventParentDataWidget<E>> children,
+  })   : assert(visibleRange != null),
         assert(currentlyVisibleDates != null),
         assert(page != null),
         assert(children != null),
@@ -201,7 +201,7 @@ class _EventsWidget<E extends Event> extends MultiChildRenderObjectWidget {
 
 class _EventParentData<E extends Event>
     extends ContainerBoxParentData<RenderBox> {
-  E event;
+  E? event;
 }
 
 class _EventsLayout<E extends Event> extends RenderBox
@@ -209,11 +209,11 @@ class _EventsLayout<E extends Event> extends RenderBox
         ContainerRenderObjectMixin<RenderBox, _EventParentData<E>>,
         RenderBoxContainerDefaultsMixin<RenderBox, _EventParentData<E>> {
   _EventsLayout({
-    @required VisibleRange visibleRange,
-    @required DateInterval currentlyVisibleDates,
-    @required double page,
-    @required double eventHeight,
-  })  : assert(visibleRange != null),
+    required VisibleRange visibleRange,
+    required DateInterval currentlyVisibleDates,
+    required double page,
+    required double eventHeight,
+  })   : assert(visibleRange != null),
         _visibleRange = visibleRange,
         assert(currentlyVisibleDates != null),
         _currentlyVisibleDates = currentlyVisibleDates,
@@ -328,7 +328,7 @@ class _EventsLayout<E extends Event> extends RenderBox
     final oldParallelEvents = parallelEventsFrom(page.floor());
     final newParallelEvents = parallelEventsFrom(page.ceil());
     final t = page - page.floorToDouble();
-    return lerpDouble(oldParallelEvents, newParallelEvents, t);
+    return lerpDouble(oldParallelEvents, newParallelEvents, t)!;
   }
 
   @override
@@ -404,7 +404,7 @@ class _EventsLayout<E extends Event> extends RenderBox
     for (final child in children) {
       final event = child.data.event;
 
-      final startDate = event.start.calendarDate;
+      final startDate = event!.start.calendarDate;
       final left = ((startDate.epochDay - page) * dateWidth).coerceAtLeast(0);
       final endDate = event.endDateInclusive;
       final right =
@@ -415,12 +415,12 @@ class _EventsLayout<E extends Event> extends RenderBox
         height: eventHeight,
       ));
 
-      child.data.offset = Offset(left, _yPositions[event] * eventHeight);
+      child.data.offset = Offset(left, _yPositions[event]! * eventHeight);
     }
   }
 
   @override
-  bool hitTestChildren(BoxHitTestResult result, {Offset position}) {
+  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
     return defaultHitTestChildren(result, position: position);
   }
 

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../theme.dart';
 
 class WeekIndicator extends StatelessWidget {
-  const WeekIndicator(this.week, {Key key}) : super(key: key);
+  const WeekIndicator(this.week, {Key? key}) : super(key: key);
 
   final int week;
 

@@ -7,7 +7,7 @@ import '../theme.dart';
 import '../utils/utils.dart';
 
 class DateIndicator extends StatelessWidget {
-  const DateIndicator(this.date, {Key key}) : super(key: key);
+  const DateIndicator(this.date, {Key? key}) : super(key: key);
 
   final LocalDate date;
 
