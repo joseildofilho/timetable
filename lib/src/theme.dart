@@ -278,10 +278,10 @@ class TimetableTheme extends InheritedTheme {
   /// ```dart
   /// TimetableThemeData theme = context.timetableTheme;
   /// ```
-  static TimetableThemeData of(BuildContext context) {
+  static TimetableThemeData? of(BuildContext context) {
     final timetableTheme =
         context.dependOnInheritedWidgetOfExactType<TimetableTheme>();
-    return timetableTheme.data;
+    return timetableTheme?.data;
   }
 
   @override
@@ -299,5 +299,5 @@ class TimetableTheme extends InheritedTheme {
 
 extension TimetableThemeBuildContext on BuildContext {
   /// Shortcut for `TimetableTheme.of(context)`.
-  TimetableThemeData get timetableTheme => TimetableTheme.of(this);
+  TimetableThemeData? get timetableTheme => TimetableTheme.of(this);
 }

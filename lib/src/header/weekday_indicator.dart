@@ -18,16 +18,16 @@ class WeekdayIndicator extends StatelessWidget {
     final timetableTheme = context.timetableTheme;
 
     final states = DateIndicator.statesFor(date);
-    final pattern = timetableTheme.weekDayIndicatorPattern?.resolve(states) ??
+    final pattern = timetableTheme?.weekDayIndicatorPattern?.resolve(states) ??
         LocalDatePattern.createWithCurrentCulture('ddd');
     final decoration =
-        timetableTheme.weekDayIndicatorDecoration?.resolve(states) ??
+        timetableTheme?.weekDayIndicatorDecoration?.resolve(states) ??
             BoxDecoration();
     final textStyle =
-        timetableTheme.weekDayIndicatorTextStyle?.resolve(states) ??
+        timetableTheme?.weekDayIndicatorTextStyle?.resolve(states) ??
             TextStyle(
               color: date.isToday
-                  ? timetableTheme.primaryColor ?? theme.primaryColor
+                  ? timetableTheme?.primaryColor ?? theme.primaryColor
                   : theme.highEmphasisOnBackground,
             );
 

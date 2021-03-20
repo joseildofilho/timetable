@@ -56,7 +56,8 @@ class TimetableHeader<E extends Event> extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 SizedBox(
-                  height: context.timetableTheme.totalDateIndicatorHeight ?? 72,
+                  height:
+                      context.timetableTheme?.totalDateIndicatorHeight ?? 72,
                   child: MultiDateHeader(
                     controller: controller,
                     builder: dateHeaderBuilder ?? (_, __) => Container(),

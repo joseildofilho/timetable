@@ -30,9 +30,9 @@ class TimetableContent<E extends Event> extends StatelessWidget {
     return VerticalZoom(
       initialZoom: controller.initialTimeRange.asInitialZoom(),
       minChildHeight:
-          (timetableTheme.minimumHourHeight ?? 16) * TimeConstants.hoursPerDay,
+          (timetableTheme?.minimumHourHeight ?? 16) * TimeConstants.hoursPerDay,
       maxChildHeight:
-          (timetableTheme.maximumHourHeight ?? 64) * TimeConstants.hoursPerDay,
+          (timetableTheme?.maximumHourHeight ?? 64) * TimeConstants.hoursPerDay,
       child: Row(
         children: <Widget>[
           Container(
@@ -40,7 +40,7 @@ class TimetableContent<E extends Event> extends StatelessWidget {
             padding: EdgeInsets.only(right: 12),
             child: CustomPaint(
               painter: DateHoursPainter(
-                textStyle: timetableTheme.hourTextStyle ??
+                textStyle: timetableTheme?.hourTextStyle ??
                     theme.textTheme.caption?.copyWith(
                       color: context.theme.disabledOnBackground,
                     ) ??

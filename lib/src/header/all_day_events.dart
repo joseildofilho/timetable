@@ -178,7 +178,7 @@ class _EventsWidget<E extends Event> extends MultiChildRenderObjectWidget {
       currentlyVisibleDates: currentlyVisibleDates,
       page: page,
       eventHeight:
-          context.timetableTheme.allDayEventHeight ?? _defaultEventHeight,
+          context.timetableTheme?.allDayEventHeight ?? _defaultEventHeight,
     );
   }
 
@@ -189,7 +189,7 @@ class _EventsWidget<E extends Event> extends MultiChildRenderObjectWidget {
       ..currentlyVisibleDates = currentlyVisibleDates
       ..page = page
       ..eventHeight =
-          context.timetableTheme.allDayEventHeight ?? _defaultEventHeight;
+          context.timetableTheme?.allDayEventHeight ?? _defaultEventHeight;
   }
 }
 

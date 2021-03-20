@@ -17,16 +17,16 @@ class DateIndicator extends StatelessWidget {
     final timetableTheme = context.timetableTheme;
 
     final states = statesFor(date);
-    final pattern = timetableTheme.dateIndicatorPattern?.resolve(states) ??
+    final pattern = timetableTheme?.dateIndicatorPattern?.resolve(states) ??
         LocalDatePattern.createWithCurrentCulture('%d');
-    final primaryColor = timetableTheme.primaryColor ?? theme.primaryColor;
+    final primaryColor = timetableTheme?.primaryColor ?? theme.primaryColor;
     final decoration =
-        timetableTheme.dateIndicatorDecoration?.resolve(states) ??
+        timetableTheme?.dateIndicatorDecoration?.resolve(states) ??
             BoxDecoration(
               shape: BoxShape.circle,
               color: date.isToday ? primaryColor : Colors.transparent,
             );
-    final textStyle = timetableTheme.dateIndicatorTextStyle?.resolve(states) ??
+    final textStyle = timetableTheme?.dateIndicatorTextStyle?.resolve(states) ??
         TextStyle(
           color: date.isToday
               ? primaryColor.highEmphasisOnColor

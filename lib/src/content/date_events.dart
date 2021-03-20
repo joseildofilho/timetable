@@ -51,17 +51,17 @@ class DateEvents<E extends Event> extends StatelessWidget {
       delegate: _DayEventsLayoutDelegate(
         date: date,
         events: events,
-        minEventDuration: timetableTheme.partDayEventMinimumDuration ??
+        minEventDuration: timetableTheme?.partDayEventMinimumDuration ??
             _defaultMinEventDuration,
         minEventHeight:
-            timetableTheme.partDayEventMinimumHeight ?? _defaultMinEventHeight,
+            timetableTheme?.partDayEventMinimumHeight ?? _defaultMinEventHeight,
         eventSpacing:
-            timetableTheme.partDayEventSpacing ?? _defaultEventSpacing,
-        enableStacking: timetableTheme.enablePartDayEventStacking ?? true,
+            timetableTheme?.partDayEventSpacing ?? _defaultEventSpacing,
+        enableStacking: timetableTheme?.enablePartDayEventStacking ?? true,
         minimumDeltaForStacking:
-            timetableTheme.partDayEventMinimumDeltaForStacking ??
+            timetableTheme?.partDayEventMinimumDeltaForStacking ??
                 _defaultPartDayEventMinimumDeltaForStacking,
-        stackedEventSpacing: timetableTheme.partDayStackedEventSpacing ??
+        stackedEventSpacing: timetableTheme?.partDayStackedEventSpacing ??
             _defaultStackedEventSpacing,
       ),
       children: [

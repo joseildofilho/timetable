@@ -143,7 +143,7 @@ class _VerticalZoomState extends State<VerticalZoom> {
   void _onZoomUpdate(
     double height,
     ScaleUpdateDetails details,
-    TimetableThemeData theme,
+    TimetableThemeData? theme,
   ) {
     setState(() {
       _contentHeight = _coerceContentHeight(
@@ -164,13 +164,13 @@ class _VerticalZoomState extends State<VerticalZoom> {
   double _coerceContentHeight(
     double childHeight,
     double parentHeight,
-    TimetableThemeData theme,
+    TimetableThemeData? theme,
   ) {
     return childHeight
         .coerceIn(widget.minChildHeight, widget.maxChildHeight)
         .coerceIn(
-          (theme.minimumHourZoom ?? 0) * parentHeight,
-          (theme.maximumHourZoom ?? double.infinity) * parentHeight,
+          (theme?.minimumHourZoom ?? 0) * parentHeight,
+          (theme?.maximumHourZoom ?? double.infinity) * parentHeight,
         );
   }
 

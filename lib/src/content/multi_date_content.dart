@@ -46,12 +46,12 @@ class _MultiDateContentState<E extends Event>
     return CustomPaint(
       painter: MultiDateBackgroundPainter(
         controller: widget.controller,
-        dividerColor: timetableTheme.dividerColor ?? theme.dividerColor,
+        dividerColor: timetableTheme?.dividerColor ?? theme.dividerColor,
       ),
       foregroundPainter: CurrentTimeIndicatorPainter(
         controller: widget.controller,
-        color:
-            timetableTheme.timeIndicatorColor ?? theme.highEmphasisOnBackground,
+        color: timetableTheme?.timeIndicatorColor ??
+            theme.highEmphasisOnBackground,
       ),
       child: DatePageView(
         controller: widget.controller,
