@@ -12,17 +12,15 @@ import 'multi_date_content.dart';
 
 class TimetableContent<E extends Event> extends StatelessWidget {
   const TimetableContent({
-    Key key,
-    @required this.controller,
-    @required this.eventBuilder,
+    Key? key,
+    required this.controller,
+    required this.eventBuilder,
     this.onEventBackgroundTap,
-  })  : assert(controller != null),
-        assert(eventBuilder != null),
-        super(key: key);
+  }) : super(key: key);
 
   final TimetableController<E> controller;
   final EventBuilder<E> eventBuilder;
-  final OnEventBackgroundTapCallback onEventBackgroundTap;
+  final OnEventBackgroundTapCallback? onEventBackgroundTap;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +30,9 @@ class TimetableContent<E extends Event> extends StatelessWidget {
     return VerticalZoom(
       initialZoom: controller.initialTimeRange.asInitialZoom(),
       minChildHeight:
-          (timetableTheme?.minimumHourHeight ?? 16) * TimeConstants.hoursPerDay,
+          (timetableTheme.minimumHourHeight ?? 16) * TimeConstants.hoursPerDay,
       maxChildHeight:
-          (timetableTheme?.maximumHourHeight ?? 64) * TimeConstants.hoursPerDay,
+          (timetableTheme.maximumHourHeight ?? 64) * TimeConstants.hoursPerDay,
       child: Row(
         children: <Widget>[
           Container(
@@ -42,10 +40,11 @@ class TimetableContent<E extends Event> extends StatelessWidget {
             padding: EdgeInsets.only(right: 12),
             child: CustomPaint(
               painter: DateHoursPainter(
-                textStyle: timetableTheme?.hourTextStyle ??
-                    theme.textTheme.caption.copyWith(
+                textStyle: timetableTheme.hourTextStyle ??
+                    theme.textTheme.caption?.copyWith(
                       color: context.theme.disabledOnBackground,
-                    ),
+                    ) ??
+                    TextStyle(),
                 textDirection: context.directionality,
               ),
               size: Size.infinite,

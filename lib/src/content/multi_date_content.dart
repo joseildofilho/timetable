@@ -14,9 +14,9 @@ import 'streamed_date_events.dart';
 
 class MultiDateContent<E extends Event> extends StatefulWidget {
   const MultiDateContent({
-    Key key,
-    @required this.controller,
-    @required this.eventBuilder,
+    Key? key,
+    required this.controller,
+    required this.eventBuilder,
     this.onEventBackgroundTap,
   })  : assert(controller != null),
         assert(eventBuilder != null),
@@ -24,7 +24,7 @@ class MultiDateContent<E extends Event> extends StatefulWidget {
 
   final TimetableController<E> controller;
   final EventBuilder<E> eventBuilder;
-  final OnEventBackgroundTapCallback onEventBackgroundTap;
+  final OnEventBackgroundTapCallback? onEventBackgroundTap;
 
   @override
   _MultiDateContentState<E> createState() => _MultiDateContentState<E>();
@@ -89,6 +89,6 @@ class _MultiDateContentState<E extends Event>
         constraints.maxHeight *
         TimeConstants.millisecondsPerDay;
     final time = LocalTime.sinceMidnight(Time(milliseconds: millis.floor()));
-    widget.onEventBackgroundTap(date.at(time), false);
+    widget.onEventBackgroundTap?.call(date.at(time), false);
   }
 }

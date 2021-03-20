@@ -9,10 +9,10 @@ import '../event.dart';
 
 class CurrentTimeIndicatorPainter<E extends Event> extends CustomPainter {
   CurrentTimeIndicatorPainter({
-    @required this.controller,
-    @required Color color,
+    required this.controller,
+    required Color color,
     this.circleRadius = 4,
-    Listenable repaint,
+    Listenable? repaint,
   })  : assert(controller != null),
         assert(color != null),
         _paint = Paint()..color = color,
@@ -48,7 +48,8 @@ class CurrentTimeIndicatorPainter<E extends Event> extends CustomPainter {
     final time = LocalTime.currentClockTime().timeSinceMidnight.inSeconds;
     final y = (time / TimeConstants.secondsPerDay) * size.height;
 
-    final radius = lerpDouble(circleRadius, 0, (actualLeft - left) / dateWidth);
+    final radius =
+        lerpDouble(circleRadius, 0, (actualLeft - left) / dateWidth)!;
     canvas
       ..drawCircle(Offset(actualLeft, y), radius, _paint)
       ..drawLine(

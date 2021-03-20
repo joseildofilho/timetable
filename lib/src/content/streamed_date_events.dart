@@ -9,10 +9,10 @@ import 'date_events.dart';
 
 class StreamedDateEvents<E extends Event> extends StatelessWidget {
   const StreamedDateEvents({
-    @required this.date,
-    @required this.controller,
-    @required this.eventBuilder,
-  })  : assert(date != null),
+    required this.date,
+    required this.controller,
+    required this.eventBuilder,
+  })   : assert(date != null),
         assert(controller != null),
         assert(eventBuilder != null);
 

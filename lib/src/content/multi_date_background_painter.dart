@@ -7,9 +7,9 @@ import '../utils/utils.dart';
 
 class MultiDateBackgroundPainter<E extends Event> extends CustomPainter {
   MultiDateBackgroundPainter({
-    @required this.controller,
-    @required Color dividerColor,
-  })  : assert(controller != null),
+    required this.controller,
+    required Color dividerColor,
+  })   : assert(controller != null),
         assert(dividerColor != null),
         dividerPaint = Paint()..color = dividerColor,
         super(repaint: controller.scrollControllers.pageListenable);

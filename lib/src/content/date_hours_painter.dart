@@ -6,9 +6,9 @@ import '../utils/utils.dart';
 
 class DateHoursPainter extends CustomPainter {
   DateHoursPainter({
-    @required this.textStyle,
-    @required this.textDirection,
-  })  : assert(textStyle != null),
+    required this.textStyle,
+    required this.textDirection,
+  })   : assert(textStyle != null),
         assert(textDirection != null),
         _painters = [
           for (final h in innerDateHours)
@@ -28,7 +28,7 @@ class DateHoursPainter extends CustomPainter {
   final TextDirection textDirection;
   final List<TextPainter> _painters;
 
-  double _lastWidth;
+  double? _lastWidth;
 
   @override
   void paint(Canvas canvas, Size size) {

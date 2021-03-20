@@ -96,7 +96,7 @@ class Timetable<E extends Event> extends StatelessWidget {
     );
 
     if (theme != null) {
-      child = TimetableTheme(data: theme, child: child);
+      child = TimetableTheme(data: theme!, child: child);
     }
 
     return child;

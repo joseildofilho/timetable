@@ -12,11 +12,11 @@ import '../utils/utils.dart';
 
 class DateEvents<E extends Event> extends StatelessWidget {
   DateEvents({
-    Key key,
-    @required this.date,
-    @required Iterable<E> events,
-    @required this.eventBuilder,
-  })  : assert(date != null),
+    Key? key,
+    required this.date,
+    required Iterable<E> events,
+    required this.eventBuilder,
+  })   : assert(date != null),
         assert(events != null),
         assert(
           events.every((e) => e.intersectsDate(date)),
@@ -81,15 +81,15 @@ class DateEvents<E extends Event> extends StatelessWidget {
 class _DayEventsLayoutDelegate<E extends Event>
     extends MultiChildLayoutDelegate {
   _DayEventsLayoutDelegate({
-    @required this.date,
-    @required this.events,
-    @required this.minEventDuration,
-    @required this.minEventHeight,
-    @required this.eventSpacing,
-    @required this.enableStacking,
-    @required this.minimumDeltaForStacking,
-    @required this.stackedEventSpacing,
-  })  : assert(date != null),
+    required this.date,
+    required this.events,
+    required this.minEventDuration,
+    required this.minEventHeight,
+    required this.eventSpacing,
+    required this.enableStacking,
+    required this.minimumDeltaForStacking,
+    required this.stackedEventSpacing,
+  })   : assert(date != null),
         assert(events != null),
         assert(minEventDuration != null),
         assert(minEventHeight != null),
@@ -122,7 +122,7 @@ class _DayEventsLayoutDelegate<E extends Event>
       } else {
         final progress = dateTime.clockTime.timeSinceMidnight.inMilliseconds /
             TimeConstants.millisecondsPerDay;
-        return lerpDouble(0, size.height, progress);
+        return lerpDouble(0, size.height, progress)!;
       }
     }
 
@@ -130,7 +130,7 @@ class _DayEventsLayoutDelegate<E extends Event>
         timeToY(date.at(LocalTime.midnight) + period);
 
     for (final event in events) {
-      final position = positions.eventPositions[event];
+      final position = positions.eventPositions[event]!;
       final top = timeToY(event.start)
           .coerceAtMost(size.height - periodToY(minEventDuration))
           .coerceAtMost(size.height - minEventHeight);
@@ -208,7 +208,7 @@ class _DayEventsLayoutDelegate<E extends Event>
 
         final index = column
                 .where((e) => _actualEnd(e, height) >= event.start)
-                .map((e) => positions.eventPositions[e].index)
+                .map((e) => positions.eventPositions[e]!.index)
                 .max() ??
             -1;
         final previousEnd = column.fold<LocalDateTime>(
@@ -239,7 +239,7 @@ class _DayEventsLayoutDelegate<E extends Event>
 
     // Expand events to multiple columns if possible.
     for (final event in currentGroup) {
-      final position = positions.eventPositions[event];
+      final position = positions.eventPositions[event]!;
       if (position.column == columns.length - 1) {
         continue;
       }
@@ -247,7 +247,7 @@ class _DayEventsLayoutDelegate<E extends Event>
       var columnSpan = 1;
       for (var i = position.column + 1; i < columns.length; i++) {
         final hasOverlapInColumn = currentGroup
-            .where((e) => positions.eventPositions[e].column == i)
+            .where((e) => positions.eventPositions[e]!.column == i)
             .where((e) =>
                 event.start < _actualEnd(e, height) &&
                 e.start < _actualEnd(event, height))
@@ -315,7 +315,7 @@ class _SingleEventPosition {
   final int columnSpan;
   final int index;
 
-  _SingleEventPosition copyWith({int columnSpan}) {
+  _SingleEventPosition copyWith({int? columnSpan}) {
     return _SingleEventPosition(
       group,
       column,
