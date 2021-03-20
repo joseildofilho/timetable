@@ -8,8 +8,7 @@ import 'timetable.dart';
 abstract class VisibleRange {
   const VisibleRange({
     required this.visibleDays,
-  })   : assert(visibleDays != null),
-        assert(visibleDays > 0);
+  }) : assert(visibleDays > 0);
 
   /// Display a fixed number of days.
   ///
@@ -33,7 +32,6 @@ abstract class VisibleRange {
   /// Convenience method of [getTargetPageForFocus] taking a [LocalDate].
   double getTargetPageForFocusDate(
       LocalDate focusDate, DayOfWeek firstDayOfWeek) {
-    assert(focusDate != null);
     return getTargetPageForFocus(focusDate.epochDay.toDouble(), firstDayOfWeek);
   }
 
@@ -52,9 +50,6 @@ abstract class VisibleRange {
 
   @protected
   double getDefaultVelocityAddition(double velocity, Tolerance tolerance) {
-    assert(velocity != null);
-    assert(tolerance != null);
-
     return velocity.abs() > tolerance.velocity ? 0.5 * velocity.sign : 0.0;
   }
 }
@@ -73,11 +68,6 @@ class DaysVisibleRange extends VisibleRange {
     double velocity = 0,
     Tolerance tolerance = Tolerance.defaultTolerance,
   }) {
-    assert(focusPage != null);
-    assert(firstDayOfWeek != null);
-    assert(velocity != null);
-    assert(tolerance != null);
-
     final velocityAddition = getDefaultVelocityAddition(velocity, tolerance);
     return (focusPage + velocityAddition).roundToDouble();
   }
@@ -97,11 +87,6 @@ class WeekVisibleRange extends VisibleRange {
     double velocity = 0,
     Tolerance tolerance = Tolerance.defaultTolerance,
   }) {
-    assert(focusPage != null);
-    assert(firstDayOfWeek != null);
-    assert(velocity != null);
-    assert(tolerance != null);
-
     final epochWeekDayOffset =
         firstDayOfWeek.value - LocalDate.fromEpochDay(0).dayOfWeek.value;
     final focusWeek =

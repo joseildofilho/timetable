@@ -20,9 +20,7 @@ class AllDayEvents<E extends Event> extends StatelessWidget {
     required this.controller,
     required this.allDayEventBuilder,
     this.onEventBackgroundTap,
-  })  : assert(controller != null),
-        assert(allDayEventBuilder != null),
-        super(key: key);
+  }) : super(key: key);
 
   final TimetableController<E> controller;
   final AllDayEventBuilder<E> allDayEventBuilder;
@@ -165,11 +163,7 @@ class _EventsWidget<E extends Event> extends MultiChildRenderObjectWidget {
     required this.currentlyVisibleDates,
     required this.page,
     required List<_EventParentDataWidget<E>> children,
-  })   : assert(visibleRange != null),
-        assert(currentlyVisibleDates != null),
-        assert(page != null),
-        assert(children != null),
-        super(children: children);
+  }) : super(children: children);
 
   static const _defaultEventHeight = 24.0;
 
@@ -184,7 +178,7 @@ class _EventsWidget<E extends Event> extends MultiChildRenderObjectWidget {
       currentlyVisibleDates: currentlyVisibleDates,
       page: page,
       eventHeight:
-          context.timetableTheme?.allDayEventHeight ?? _defaultEventHeight,
+          context.timetableTheme.allDayEventHeight ?? _defaultEventHeight,
     );
   }
 
@@ -195,7 +189,7 @@ class _EventsWidget<E extends Event> extends MultiChildRenderObjectWidget {
       ..currentlyVisibleDates = currentlyVisibleDates
       ..page = page
       ..eventHeight =
-          context.timetableTheme?.allDayEventHeight ?? _defaultEventHeight;
+          context.timetableTheme.allDayEventHeight ?? _defaultEventHeight;
   }
 }
 
@@ -213,13 +207,9 @@ class _EventsLayout<E extends Event> extends RenderBox
     required DateInterval currentlyVisibleDates,
     required double page,
     required double eventHeight,
-  })   : assert(visibleRange != null),
-        _visibleRange = visibleRange,
-        assert(currentlyVisibleDates != null),
+  })   : _visibleRange = visibleRange,
         _currentlyVisibleDates = currentlyVisibleDates,
-        assert(page != null),
         _page = page,
-        assert(eventHeight != null),
         _eventHeight = eventHeight;
 
   VisibleRange _visibleRange;
@@ -227,7 +217,6 @@ class _EventsLayout<E extends Event> extends RenderBox
   VisibleRange get visibleRange => _visibleRange;
 
   set visibleRange(VisibleRange value) {
-    assert(value != null);
     if (_visibleRange == value) {
       return;
     }
@@ -241,7 +230,6 @@ class _EventsLayout<E extends Event> extends RenderBox
   DateInterval get currentlyVisibleDates => _currentlyVisibleDates;
 
   set currentlyVisibleDates(DateInterval value) {
-    assert(value != null);
     if (_currentlyVisibleDates == value) {
       return;
     }
@@ -255,7 +243,6 @@ class _EventsLayout<E extends Event> extends RenderBox
   double get page => _page;
 
   set page(double value) {
-    assert(value != null);
     if (_page == value) {
       return;
     }
@@ -269,7 +256,6 @@ class _EventsLayout<E extends Event> extends RenderBox
   double get eventHeight => _eventHeight;
 
   set eventHeight(double value) {
-    assert(value != null);
     if (_eventHeight == value) {
       return;
     }

@@ -28,9 +28,7 @@ extension MapListenable<T> on ValueListenable<T> {
 
 class _MapValueListenable<T, R> extends ValueNotifier<R> {
   _MapValueListenable(this.listenable, this.mapper)
-      : assert(listenable != null),
-        assert(mapper != null),
-        super(mapper(listenable.value)) {
+      : super(mapper(listenable.value)) {
     listenable.addListener(_listener);
   }
 

@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:dartx/dartx.dart';
-import 'package:meta/meta.dart';
 import 'package:time_machine/time_machine.dart';
 
 import 'basic.dart';
@@ -15,9 +14,7 @@ abstract class Event {
     required this.id,
     required this.start,
     required this.end,
-  })   : assert(id != null),
-        assert(start != null),
-        assert(end != null),
+  })   :
         assert(start <= end);
 
   /// A unique ID, used e.g. for animating events.

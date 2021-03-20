@@ -13,8 +13,7 @@ class DatePageView<E extends Event> extends StatefulWidget {
     Key? key,
     required this.controller,
     required this.builder,
-  })   : assert(controller != null),
-        assert(builder != null),
+  })   :
         super(key: key);
 
   final TimetableController<E> controller;

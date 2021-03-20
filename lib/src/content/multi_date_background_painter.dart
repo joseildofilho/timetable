@@ -9,9 +9,7 @@ class MultiDateBackgroundPainter<E extends Event> extends CustomPainter {
   MultiDateBackgroundPainter({
     required this.controller,
     required Color dividerColor,
-  })   : assert(controller != null),
-        assert(dividerColor != null),
-        dividerPaint = Paint()..color = dividerColor,
+  })   : dividerPaint = Paint()..color = dividerColor,
         super(repaint: controller.scrollControllers.pageListenable);
 
   final TimetableController<E> controller;

@@ -17,9 +17,7 @@ class TimetableHeader<E extends Event> extends StatelessWidget {
     this.onEventBackgroundTap,
     this.leadingHeaderBuilder,
     this.dateHeaderBuilder,
-  })  : assert(controller != null),
-        assert(allDayEventBuilder != null),
-        super(key: key);
+  }) : super(key: key);
 
   final TimetableController<E> controller;
   final AllDayEventBuilder<E> allDayEventBuilder;
@@ -58,8 +56,7 @@ class TimetableHeader<E extends Event> extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 SizedBox(
-                  height:
-                      context.timetableTheme?.totalDateIndicatorHeight ?? 72,
+                  height: context.timetableTheme.totalDateIndicatorHeight ?? 72,
                   child: MultiDateHeader(
                     controller: controller,
                     builder: dateHeaderBuilder ?? (_, __) => Container(),

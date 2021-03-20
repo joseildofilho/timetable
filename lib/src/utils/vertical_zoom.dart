@@ -10,24 +10,25 @@ abstract class InitialZoom {
   const InitialZoom();
 
   const factory InitialZoom.zoom(double zoom) = _FactorInitialZoom;
+
   const factory InitialZoom.range({
     double startFraction,
     double endFraction,
   }) = _RangeInitialZoom;
 
   double getContentHeight(double parentHeight);
+
   double getOffset(double parentHeight, double contentHeight);
 }
 
 class _FactorInitialZoom extends InitialZoom {
-  const _FactorInitialZoom(this.zoom)
-      : assert(zoom != null),
-        assert(zoom > 0);
+  const _FactorInitialZoom(this.zoom) : assert(zoom > 0);
 
   final double zoom;
 
   @override
   double getContentHeight(double parentHeight) => parentHeight * zoom;
+
   @override
   double getOffset(double parentHeight, double contentHeight) {
     // Center the viewport vertically.
@@ -39,9 +40,7 @@ class _RangeInitialZoom extends InitialZoom {
   const _RangeInitialZoom({
     this.startFraction = 0,
     this.endFraction = 1,
-  })  : assert(startFraction != null),
-        assert(0 <= startFraction),
-        assert(endFraction != null),
+  })  : assert(0 <= startFraction),
         assert(endFraction <= 1),
         assert(startFraction < endFraction);
 
@@ -64,11 +63,7 @@ class VerticalZoom extends StatefulWidget {
     required this.child,
     this.minChildHeight = 1,
     this.maxChildHeight = double.infinity,
-  })  : assert(initialZoom != null),
-        assert(child != null),
-        assert(minChildHeight != null),
-        assert(minChildHeight > 0),
-        assert(maxChildHeight != null),
+  })  : assert(minChildHeight > 0),
         assert(maxChildHeight > 0),
         assert(minChildHeight <= maxChildHeight),
         super(key: key);
@@ -85,6 +80,7 @@ class VerticalZoom extends StatefulWidget {
 
 class _VerticalZoomState extends State<VerticalZoom> {
   late ScrollController _scrollController;
+
   // We store height i/o zoom factor so our child stays constant when we change
   // height.
   late double _contentHeight;
@@ -98,7 +94,7 @@ class _VerticalZoomState extends State<VerticalZoom> {
 
   @override
   void dispose() {
-    _scrollController?.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 

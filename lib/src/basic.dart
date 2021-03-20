@@ -17,7 +17,7 @@ class BasicEvent extends Event {
     required this.color,
     required LocalDateTime start,
     required LocalDateTime end,
-  })   : assert(title != null),
+  })   :
         super(id: id, start: start, end: end);
 
   /// A title for the user, used e.g. by [BasicEventWidget].
@@ -42,7 +42,7 @@ class BasicEventWidget extends StatelessWidget {
     this.event, {
     Key? key,
     this.onTap,
-  })  : assert(event != null),
+  })  :
         super(key: key);
 
   /// The [BasicEvent] to be displayed.
@@ -89,10 +89,7 @@ class BasicAllDayEventWidget extends StatelessWidget {
     required this.info,
     this.borderRadius = 4,
     this.onTap,
-  })  : assert(event != null),
-        assert(info != null),
-        assert(borderRadius != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// The [BasicEvent] to be displayed.
   final BasicEvent event;

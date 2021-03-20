@@ -44,9 +44,7 @@ class Timetable<E extends Event> extends StatelessWidget {
     this.theme,
     this.dateHeaderBuilder,
     this.leadingHeaderBuilder,
-  })  : assert(controller != null),
-        assert(eventBuilder != null),
-        super(key: key);
+  }) : super(key: key);
 
   final TimetableController<E> controller;
   final EventBuilder<E> eventBuilder;

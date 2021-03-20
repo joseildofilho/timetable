@@ -30,7 +30,6 @@ abstract class EventProvider<E extends Event> {
   /// - [EventProvider]'s class comment for an overview of provided
   ///   implementations.
   factory EventProvider.simpleStream(Stream<List<E>> eventStream) {
-    assert(eventStream != null);
 
     final baseStream = eventStream.publishValue();
     final subscription = baseStream.connect();
@@ -77,7 +76,7 @@ abstract class EventProvider<E extends Event> {
 /// - [EventProvider.stream], if your events change or you have lots of them.
 class ListEventProvider<E extends Event> extends EventProvider<E> {
   ListEventProvider(List<E> events)
-      : assert(events != null),
+      :
         _events = events;
 
   final List<E> _events;

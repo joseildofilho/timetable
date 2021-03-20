@@ -16,9 +16,7 @@ class DateEvents<E extends Event> extends StatelessWidget {
     required this.date,
     required Iterable<E> events,
     required this.eventBuilder,
-  })   : assert(date != null),
-        assert(events != null),
-        assert(
+  })   : assert(
           events.every((e) => e.intersectsDate(date)),
           'All events must intersect the given date',
         ),
@@ -27,7 +25,6 @@ class DateEvents<E extends Event> extends StatelessWidget {
           'Events may not contain duplicate IDs',
         ),
         events = events.sortedByStartLength(),
-        assert(eventBuilder != null),
         super(key: key);
 
   static final _defaultMinEventDuration = Period(minutes: 30);
@@ -36,6 +33,7 @@ class DateEvents<E extends Event> extends StatelessWidget {
   static const _defaultStackedEventSpacing = 4.0;
   static final _defaultPartDayEventMinimumDeltaForStacking =
       Period(minutes: 15);
+
   @Deprecated('This is now configurable via '
       '[TimetableThemeData.partDayEventMinimumDeltaForStacking].')
   static Period get minStackOverlap =>
@@ -53,17 +51,17 @@ class DateEvents<E extends Event> extends StatelessWidget {
       delegate: _DayEventsLayoutDelegate(
         date: date,
         events: events,
-        minEventDuration: timetableTheme?.partDayEventMinimumDuration ??
+        minEventDuration: timetableTheme.partDayEventMinimumDuration ??
             _defaultMinEventDuration,
         minEventHeight:
-            timetableTheme?.partDayEventMinimumHeight ?? _defaultMinEventHeight,
+            timetableTheme.partDayEventMinimumHeight ?? _defaultMinEventHeight,
         eventSpacing:
-            timetableTheme?.partDayEventSpacing ?? _defaultEventSpacing,
-        enableStacking: timetableTheme?.enablePartDayEventStacking ?? true,
+            timetableTheme.partDayEventSpacing ?? _defaultEventSpacing,
+        enableStacking: timetableTheme.enablePartDayEventStacking ?? true,
         minimumDeltaForStacking:
-            timetableTheme?.partDayEventMinimumDeltaForStacking ??
+            timetableTheme.partDayEventMinimumDeltaForStacking ??
                 _defaultPartDayEventMinimumDeltaForStacking,
-        stackedEventSpacing: timetableTheme?.partDayStackedEventSpacing ??
+        stackedEventSpacing: timetableTheme.partDayStackedEventSpacing ??
             _defaultStackedEventSpacing,
       ),
       children: [
@@ -89,14 +87,7 @@ class _DayEventsLayoutDelegate<E extends Event>
     required this.enableStacking,
     required this.minimumDeltaForStacking,
     required this.stackedEventSpacing,
-  })   : assert(date != null),
-        assert(events != null),
-        assert(minEventDuration != null),
-        assert(minEventHeight != null),
-        assert(eventSpacing != null),
-        assert(enableStacking != null),
-        assert(minimumDeltaForStacking != null),
-        assert(stackedEventSpacing != null);
+  });
 
   static const minWidth = 4.0;
 
@@ -305,10 +296,7 @@ class _SingleEventPosition {
     this.column,
     this.index, {
     this.columnSpan = 1,
-  })  : assert(group != null),
-        assert(column != null),
-        assert(columnSpan != null),
-        assert(index != null);
+  });
 
   final int group;
   final int column;

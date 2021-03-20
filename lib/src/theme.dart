@@ -40,9 +40,7 @@ class TimetableThemeData {
             minimumHourHeight <= maximumHourHeight),
         assert(minimumHourZoom == null || minimumHourZoom > 0),
         assert(maximumHourZoom == null || maximumHourZoom > 0),
-        assert(minimumHourZoom == null ||
-            minimumHourZoom == null ||
-            minimumHourZoom <= minimumHourZoom);
+        assert(minimumHourZoom == null || minimumHourZoom <= minimumHourZoom);
 
   /// Used by default for indicating the current date.
   ///
@@ -267,8 +265,7 @@ class TimetableTheme extends InheritedTheme {
     Key? key,
     required this.data,
     required Widget child,
-  })   : assert(data != null),
-        super(key: key, child: child);
+  }) : super(key: key, child: child);
 
   final TimetableThemeData data;
 
@@ -284,7 +281,7 @@ class TimetableTheme extends InheritedTheme {
   static TimetableThemeData of(BuildContext context) {
     final timetableTheme =
         context.dependOnInheritedWidgetOfExactType<TimetableTheme>();
-    return timetableTheme!.data;
+    return timetableTheme.data;
   }
 
   @override

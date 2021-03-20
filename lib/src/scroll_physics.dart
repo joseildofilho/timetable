@@ -5,7 +5,7 @@ import 'controller.dart';
 
 class TimetableScrollPhysics extends ScrollPhysics {
   const TimetableScrollPhysics(this.controller, {ScrollPhysics? parent})
-      : assert(controller != null),
+      :
         super(parent: parent);
 
   final TimetableController controller;

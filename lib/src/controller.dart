@@ -19,11 +19,7 @@ class TimetableController<E extends Event> {
     this.initialTimeRange = const InitialTimeRange.zoom(1),
     this.visibleRange = const VisibleRange.week(),
     this.firstDayOfWeek = DayOfWeek.monday,
-  })  : assert(eventProvider != null),
-        initialDate = initialDate ?? LocalDate.today(),
-        assert(initialTimeRange != null),
-        assert(firstDayOfWeek != null),
-        assert(visibleRange != null) {
+  }) : initialDate = initialDate ?? LocalDate.today() {
     _scrollControllers = LinkedScrollControllerGroup(
       initialPage: visibleRange.getTargetPageForFocusDate(
           this.initialDate, firstDayOfWeek),
@@ -71,14 +67,18 @@ class TimetableController<E extends Event> {
   final DayOfWeek firstDayOfWeek;
 
   late LinkedScrollControllerGroup _scrollControllers;
+
   LinkedScrollControllerGroup get scrollControllers => _scrollControllers;
 
   late ValueNotifier<LocalDate> _dateListenable;
+
   ValueListenable<LocalDate> get dateListenable => _dateListenable;
 
   late ValueNotifier<DateInterval> _currentlyVisibleDatesListenable;
+
   ValueListenable<DateInterval> get currentlyVisibleDatesListenable =>
       _currentlyVisibleDatesListenable;
+
   DateInterval get currentlyVisibleDates =>
       currentlyVisibleDatesListenable.value;
 

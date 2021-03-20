@@ -13,10 +13,7 @@ class CurrentTimeIndicatorPainter<E extends Event> extends CustomPainter {
     required Color color,
     this.circleRadius = 4,
     Listenable? repaint,
-  })  : assert(controller != null),
-        assert(color != null),
-        _paint = Paint()..color = color,
-        assert(circleRadius != null),
+  })  : _paint = Paint()..color = color,
         super(
           repaint: Listenable.merge([
             controller.scrollControllers.pageListenable,

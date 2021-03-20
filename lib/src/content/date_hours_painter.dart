@@ -8,9 +8,7 @@ class DateHoursPainter extends CustomPainter {
   DateHoursPainter({
     required this.textStyle,
     required this.textDirection,
-  })   : assert(textStyle != null),
-        assert(textDirection != null),
-        _painters = [
+  }) : _painters = [
           for (final h in innerDateHours)
             TextPainter(
               text: TextSpan(

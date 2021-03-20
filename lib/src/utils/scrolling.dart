@@ -39,6 +39,7 @@ class LinkedScrollControllerGroup {
 
   /// The current page of the group.
   double get page => _pageNotifier.value;
+
   ValueListenable<double> get pageListenable => _pageNotifier;
 
   /// Creates a new controller that is linked to any existing ones.
@@ -161,6 +162,7 @@ class _LinkedScrollController extends ScrollController {
     required Duration duration,
   }) async =>
       animateTo(_pageToOffset(page), curve: curve, duration: duration);
+
   Future<void> jumpToPage(double page) async => jumpTo(_pageToOffset(page));
 
   double _pageToOffset(double page) =>
@@ -181,8 +183,7 @@ class _LinkedScrollPosition extends ScrollPositionWithSingleContext {
     required ScrollContext context,
     this.initialPage,
     ScrollPosition? oldPosition,
-  })  : assert(owner != null),
-        super(
+  }) : super(
           physics: physics,
           context: context,
           initialPixels: null,
@@ -333,7 +334,7 @@ class _LinkedScrollActivity extends ScrollActivity {
   void unlink(_LinkedScrollPosition driver) {
     drivers.remove(driver);
     if (drivers.isEmpty) {
-      delegate?.goIdle();
+      delegate.goIdle();
     }
   }
 

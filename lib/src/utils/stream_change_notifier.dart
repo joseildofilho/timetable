@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 
 class StreamChangeNotifier extends ChangeNotifier {
-  StreamChangeNotifier(Stream<dynamic> stream) : assert(stream != null) {
+  StreamChangeNotifier(Stream<dynamic> stream) {
     _subscription = stream.listen((dynamic _) => notifyListeners());
   }
 

@@ -15,12 +15,12 @@ class WeekIndicator extends StatelessWidget {
 
     final defaultBackgroundColor = theme.contrastColor.withOpacity(0.12);
 
-    final decoration = timetableTheme?.weekIndicatorDecoration ??
+    final decoration = timetableTheme.weekIndicatorDecoration ??
         BoxDecoration(
           color: defaultBackgroundColor,
           borderRadius: BorderRadius.circular(2),
         );
-    final textStyle = timetableTheme?.weekIndicatorTextStyle ??
+    final textStyle = timetableTheme.weekIndicatorTextStyle ??
         TextStyle(
           color: defaultBackgroundColor
               .alphaBlendOn(theme.scaffoldBackgroundColor)

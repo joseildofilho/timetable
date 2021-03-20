@@ -11,9 +11,7 @@ class AllDayEventLayoutInfo {
   const AllDayEventLayoutInfo({
     required this.hiddenStartDays,
     required this.hiddenEndDays,
-  })   : assert(hiddenStartDays != null),
-        assert(hiddenStartDays >= 0),
-        assert(hiddenEndDays != null),
+  })   : assert(hiddenStartDays >= 0),
         assert(hiddenEndDays >= 0);
 
   final double hiddenStartDays;
@@ -35,9 +33,7 @@ class AllDayEventBackgroundPainter extends CustomPainter {
     required this.info,
     required this.color,
     this.borderRadius = 0,
-  })  : assert(info != null),
-        assert(color != null),
-        assert(borderRadius != null);
+  });
 
   final AllDayEventLayoutInfo info;
   final Color color;
@@ -66,9 +62,7 @@ class AllDayEventBorder extends ShapeBorder {
     required this.info,
     this.side = BorderSide.none,
     this.borderRadius = 0,
-  })  : assert(info != null),
-        assert(side != null),
-        assert(borderRadius != null);
+  });
 
   final AllDayEventLayoutInfo info;
   final BorderSide side;
