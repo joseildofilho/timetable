@@ -1,10 +1,10 @@
 import 'package:dartx/dartx.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:time_machine/time_machine.dart';
 import 'package:timetable/src/visible_range.dart';
 
 void main() {
-  VisibleRange visibleRange;
+  late VisibleRange visibleRange;
 
   group('VisibleRange.days', () {
     setUp(() => visibleRange = VisibleRange.days(3));

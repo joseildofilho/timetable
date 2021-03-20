@@ -1,4 +1,4 @@
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:time_machine/time_machine.dart';
 import 'package:dartx/dartx.dart';
 import 'package:timetable/src/event.dart';

@@ -50,7 +50,7 @@ void main() {
     double getChildOffset(WidgetTester tester) {
       return tester
           .widget<SingleChildScrollView>(find.byType(SingleChildScrollView))
-          .controller
+          .controller!
           .offset;
     }
 
