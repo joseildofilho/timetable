@@ -60,7 +60,7 @@ class TimetableHeader<E extends Event> extends StatelessWidget {
                       context.timetableTheme?.totalDateIndicatorHeight ?? 72,
                   child: MultiDateHeader(
                     controller: controller,
-                    builder: dateHeaderBuilder ?? (_, __) => Container(),
+                    builder: dateHeaderBuilder,
                   ),
                 ),
                 AllDayEvents<E>(
